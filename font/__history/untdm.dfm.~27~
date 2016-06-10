@@ -1,0 +1,176 @@
+object dm: Tdm
+  OldCreateOrder = False
+  Height = 358
+  Width = 512
+  object banco: TIBDatabase
+    Connected = True
+    DatabaseName = 'D:\Estagio2016\Banco\BANCO.FDB'
+    Params.Strings = (
+      'user_name=sysdba'
+      'password=masterkey')
+    LoginPrompt = False
+    DefaultTransaction = IBTransaction
+    ServerType = 'IBServer'
+    Left = 40
+    Top = 40
+  end
+  object IBTransaction: TIBTransaction
+    Active = True
+    DefaultDatabase = banco
+    Left = 96
+    Top = 40
+  end
+  object tbCliente: TIBDataSet
+    Database = banco
+    Transaction = IBTransaction
+    BufferChunks = 1000
+    CachedUpdates = False
+    DeleteSQL.Strings = (
+      'delete from cliente'
+      'where'
+      '  ID_CLIENTE = :OLD_ID_CLIENTE')
+    InsertSQL.Strings = (
+      'insert into cliente'
+      
+        '  (CPF_CLI, DATA_NASC, DS_BAIRRO, ENDERE_O_CLI, FONE_CLI, ID_CID' +
+        'ADE, ID_CLIENTE, '
+      '   NOME_CLI)'
+      'values'
+      
+        '  (:CPF_CLI, :DATA_NASC, :DS_BAIRRO, :ENDERE_O_CLI, :FONE_CLI, :' +
+        'ID_CIDADE, '
+      '   :ID_CLIENTE, :NOME_CLI)')
+    RefreshSQL.Strings = (
+      'Select *'
+      'from cliente '
+      'where'
+      '  ID_CLIENTE = :ID_CLIENTE')
+    SelectSQL.Strings = (
+      'select * from cliente where id_cliente = :id_cliente')
+    ModifySQL.Strings = (
+      'update cliente'
+      'set'
+      '  CPF_CLI = :CPF_CLI,'
+      '  DATA_NASC = :DATA_NASC,'
+      '  DS_BAIRRO = :DS_BAIRRO,'
+      '  ENDERE_O_CLI = :ENDERE_O_CLI,'
+      '  FONE_CLI = :FONE_CLI,'
+      '  ID_CIDADE = :ID_CIDADE,'
+      '  ID_CLIENTE = :ID_CLIENTE,'
+      '  NOME_CLI = :NOME_CLI'
+      'where'
+      '  ID_CLIENTE = :OLD_ID_CLIENTE')
+    ParamCheck = True
+    UniDirectional = False
+    Left = 40
+    Top = 104
+    object tbClienteID_CLIENTE: TIntegerField
+      FieldName = 'ID_CLIENTE'
+      Origin = '"CLIENTE"."ID_CLIENTE"'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object tbClienteNOME_CLI: TIBStringField
+      FieldName = 'NOME_CLI'
+      Origin = '"CLIENTE"."NOME_CLI"'
+      Required = True
+      Size = 30
+    end
+    object tbClienteENDERE_O_CLI: TIBStringField
+      FieldName = 'ENDERE_O_CLI'
+      Origin = '"CLIENTE"."ENDERE_O_CLI"'
+      Size = 30
+    end
+    object tbClienteFONE_CLI: TIBStringField
+      FieldName = 'FONE_CLI'
+      Origin = '"CLIENTE"."FONE_CLI"'
+      Required = True
+      OnSetText = tbClienteFONE_CLISetText
+      EditMask = '!\(99\)0000-0000;0;_'
+      Size = 30
+    end
+    object tbClienteCPF_CLI: TIBStringField
+      FieldName = 'CPF_CLI'
+      Origin = '"CLIENTE"."CPF_CLI"'
+      EditMask = '999.999.999-99;0;_'
+      Size = 14
+    end
+    object tbClienteDATA_NASC: TDateField
+      FieldName = 'DATA_NASC'
+      Origin = '"CLIENTE"."DATA_NASC"'
+      OnSetText = tbClienteDATA_NASCSetText
+      EditMask = '99/99/9999;1;'
+    end
+    object tbClienteDS_BAIRRO: TIBStringField
+      FieldName = 'DS_BAIRRO'
+      Origin = '"CLIENTE"."DS_BAIRRO"'
+      Size = 80
+    end
+    object tbClienteID_CIDADE: TIntegerField
+      FieldName = 'ID_CIDADE'
+      Origin = '"CLIENTE"."ID_CIDADE"'
+    end
+  end
+  object qryUltimo: TIBQuery
+    Database = banco
+    Transaction = IBTransaction
+    BufferChunks = 1000
+    CachedUpdates = False
+    ParamCheck = True
+    Left = 40
+    Top = 168
+  end
+  object tbCidade: TIBDataSet
+    Database = banco
+    Transaction = IBTransaction
+    BufferChunks = 1000
+    CachedUpdates = False
+    DeleteSQL.Strings = (
+      'delete from CIDADE'
+      'where'
+      '  ID_CIDADE = :OLD_ID_CIDADE')
+    InsertSQL.Strings = (
+      'insert into CIDADE'
+      '  (ID_CIDADE, NOME_CID, UF_CID)'
+      'values'
+      '  (:ID_CIDADE, :NOME_CID, :UF_CID)')
+    RefreshSQL.Strings = (
+      'Select  *'
+      'from CIDADE '
+      'where'
+      '  ID_CIDADE = :ID_CIDADE')
+    SelectSQL.Strings = (
+      'SELECT * FROM CIDADE WHERE ID_CIDADE = :ID_CIDADE')
+    ModifySQL.Strings = (
+      'update CIDADE'
+      'set'
+      '  ID_CIDADE = :ID_CIDADE,'
+      '  NOME_CID = :NOME_CID,'
+      '  UF_CID = :UF_CID'
+      'where'
+      '  ID_CIDADE = :OLD_ID_CIDADE')
+    ParamCheck = True
+    UniDirectional = False
+    Left = 96
+    Top = 104
+    object tbCidadeID_CIDADE: TIntegerField
+      FieldName = 'ID_CIDADE'
+      Origin = '"CIDADE"."ID_CIDADE"'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object tbCidadeNOME_CID: TIBStringField
+      FieldName = 'NOME_CID'
+      Origin = '"CIDADE"."NOME_CID"'
+      Required = True
+      Size = 50
+    end
+    object tbCidadeUF_CID: TIBStringField
+      FieldName = 'UF_CID'
+      Origin = '"CIDADE"."UF_CID"'
+      Required = True
+      FixedChar = True
+      Size = 2
+    end
+  end
+end

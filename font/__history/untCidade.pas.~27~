@@ -1,0 +1,150 @@
+unit untCidade;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ImgList, Vcl.StdCtrls, Vcl.ToolWin,
+  Vcl.ComCtrls, Vcl.Mask, Vcl.DBCtrls, Data.DB;
+
+type
+  TfrmCidade = class(TForm)
+    Label1: TLabel;
+    dsCidade: TDataSource;
+    Label2: TLabel;
+    dbNome: TDBEdit;
+    Label3: TLabel;
+    edtCodigo: TEdit;
+    ToolBar1: TToolBar;
+    ImageList1: TImageList;
+    btnCadastrar: TButton;
+    btnExcluir: TButton;
+    btnCancelar: TButton;
+    btnSalvar: TButton;
+    dbUF: TDBComboBox;
+    procedure btnCadastrarClick(Sender: TObject);
+    procedure btnCancelarClick(Sender: TObject);
+    procedure btnExcluirClick(Sender: TObject);
+    procedure btnSalvarClick(Sender: TObject);
+    procedure FormShow(Sender: TObject);
+    procedure dsCidadeStateChange(Sender: TObject);
+    procedure dbUFKeyPress(Sender: TObject; var Key: Char);
+    procedure dbNomeKeyPress(Sender: TObject; var Key: Char);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frmCidade: TfrmCidade;
+
+implementation
+
+{$R *.dfm}
+
+uses untdm, untPrincipal;
+
+procedure TfrmCidade.btnCancelarClick(Sender: TObject);
+begin
+  dm.tbCidade.Cancel;
+  edtCodigo.Enabled := True;
+  edtCodigo.SetFocus;
+end;
+
+procedure TfrmCidade.btnCadastrarClick(Sender: TObject);
+begin
+  dm.tbCidade.Insert;
+  edtCodigo.Enabled := False;
+  dbNome.SetFocus;
+end;
+
+procedure TfrmCidade.btnSalvarClick(Sender: TObject);
+begin
+  if (dsCidade.State = dsInsert) then
+   begin
+     dm.qryUltimo.Close;
+     dm.qryUltimo.SQL.Clear;
+     dm.qryUltimo.SQL.Add('SELECT MAX(ID_CIDADE) AS ULTIMO FROM CIDADE');
+     dm.qryUltimo.Open;
+
+     dm.tbCidadeID_CIDADE.AsInteger := dm.qryUltimo.FieldByName('ULTIMO').AsInteger + 1;
+   end;
+   if (dbNome.Text = '') or (dbUF.Text = '')  then
+        begin
+          if (dbNome.Text = '') then
+             begin
+                dbNome.Color :=$7280FA;
+                dbNome.SetFocus;
+             end;
+          if (dbUF.Text = '') then
+              begin
+                dbUF.Color :=$7280FA;
+                dbUF.SetFocus;
+              end;
+      exit;
+end;
+  dm.qryExecutar.Close;
+  dm.qryExecutar.SQL.Clear;
+  dm.qryExecutar.SQL.Add('SELECT NOME_CID, UF_CID FROM CIDADE where NOME_CID=:NOME_CID AND UF_CID=:UF_CID');
+  DM.qryExecutar.ParamByName('NOME_CID').AsString := dbNome.Text;
+  DM.qryExecutar.ParamByName('uf_CID').AsString := dbUF.Text;
+  dm.qryExecutar.Open;
+
+  if ((dm.qryExecutar.FieldByName('nome_cid').value) >'0') and ((dm.qryExecutar.FieldByName('UF_CID').Value) > '0') then begin
+    MessageDlg('Cidade ja cadastrada!', mtInformation, [mbOK],0);
+    edtCodigo.Enabled := True;
+    edtCodigo.Clear;
+    dbNome.Clear;
+    edtCodigo.SetFocus;
+    exit;
+  end;
+  dm.tbCidade.Post;
+  dm.IBTransaction.CommitRetaining;
+
+  edtCodigo.Enabled := True;
+  edtCodigo.SetFocus;
+end;
+
+procedure TfrmCidade.btnExcluirClick(Sender: TObject);
+begin
+  dm.tbCidade.Delete;
+end;
+
+procedure TfrmCidade.dbNomeKeyPress(Sender: TObject; var Key: Char);
+begin
+  if not (Key in['A'..'Z',#8, #32]) and not (Key in['a'..'z',#8, #32]) then
+  Key := #0;
+end;
+
+procedure TfrmCidade.dbUFKeyPress(Sender: TObject; var Key: Char);
+begin
+  if not (Key in['A'..'Z',#8, #32]) and not (Key in['a'..'z',#8, #32]) then
+  Key := #0;
+end;
+
+procedure TfrmCidade.dsCidadeStateChange(Sender: TObject);
+begin
+   if (dsCidade.State in [dsInsert, dsEdit]) then
+   begin
+      btnCadastrar.Visible  := False;
+      btnSalvar.Visible   := True;
+      btnExcluir.Visible  := False;
+      btnCancelar.Visible := True;
+   end
+  else
+   begin
+    btnCadastrar.Visible  := True;
+    btnSalvar.Visible   := False;
+    btnExcluir.Visible  := True;
+    btnCancelar.Visible := False;
+   end;
+end;
+
+procedure TfrmCidade.FormShow(Sender: TObject);
+begin
+  dm.tbCidade.Open;
+  dbUF.ItemIndex := -1;
+end;
+
+end.

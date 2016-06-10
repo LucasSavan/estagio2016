@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>2016/04/02 16:10:07.000.790,=C:\Users\Lucas\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2016/04/02 16:11:56.000.147,=C:\Users\Lucas\Documents\Embarcadero\Studio\Projects\Unit2.pas</Transaction>
+    <Transaction>2016/04/02 16:20:13.000.234,=C:\Users\Lucas\Documents\Embarcadero\Studio\Projects\Unit3.pas</Transaction>
+    <Transaction>2016/04/02 16:22:09.000.352,C:\Users\Lucas\Documents\Embarcadero\Studio\Projects\Unit3.pas=D:\Estagio2016\font\untCliente.pas</Transaction>
+    <Transaction>2016/04/02 16:22:09.000.352,C:\Users\Lucas\Documents\Embarcadero\Studio\Projects\Unit3.dfm=D:\Estagio2016\font\untCliente.dfm</Transaction>
+    <Transaction>2016/04/02 16:22:36.000.666,C:\Users\Lucas\Documents\Embarcadero\Studio\Projects\Unit2.dfm=D:\Estagio2016\font\untdm.dfm</Transaction>
+    <Transaction>2016/04/02 16:22:36.000.666,C:\Users\Lucas\Documents\Embarcadero\Studio\Projects\Unit2.pas=D:\Estagio2016\font\untdm.pas</Transaction>
+    <Transaction>2016/04/02 16:22:51.000.331,C:\Users\Lucas\Documents\Embarcadero\Studio\Projects\Unit1.pas=D:\Estagio2016\font\untPrincipal.pas</Transaction>
+    <Transaction>2016/04/02 16:22:51.000.331,C:\Users\Lucas\Documents\Embarcadero\Studio\Projects\Unit1.dfm=D:\Estagio2016\font\untPrincipal.dfm</Transaction>
+    <Transaction>2016/04/02 16:22:58.000.873,C:\Users\Lucas\Documents\Embarcadero\Studio\Projects\Project1.dproj=D:\Estagio2016\font\estagio.dproj</Transaction>
+    <Transaction>2016/04/04 16:24:18.000.932,=D:\Estagio2016\font\Unit1.pas</Transaction>
+    <Transaction>2016/04/04 16:25:08.000.516,D:\Estagio2016\font\untCidade.dfm=D:\Estagio2016\font\Unit1.dfm</Transaction>
+    <Transaction>2016/04/04 16:25:08.000.516,D:\Estagio2016\font\untCidade.pas=D:\Estagio2016\font\Unit1.pas</Transaction>
+    <Transaction>2016/04/05 12:13:21.000.773,D:\Estagio2016\font\untCliente.pas=</Transaction>
+    <Transaction>2016/04/05 12:13:31.000.943,=D:\Estagio2016\font\Unit1.pas</Transaction>
+    <Transaction>2016/04/05 12:14:32.000.161,D:\Estagio2016\font\untCliente.pas=D:\Estagio2016\font\Unit1.pas</Transaction>
+    <Transaction>2016/04/05 12:14:32.000.161,D:\Estagio2016\font\untCliente.dfm=D:\Estagio2016\font\Unit1.dfm</Transaction>
+  </Transactions>
+</BorlandProject>

@@ -1,0 +1,18 @@
+program estagio;
+
+uses
+  Vcl.Forms,
+  untPrincipal in 'untPrincipal.pas' {FrmPrincipal},
+  untdm in 'untdm.pas' {DataModule2: TDataModule},
+  untCliente in 'untCliente.pas' {frmCliente};
+
+{$R *.res}
+
+begin
+  Application.Initialize;
+  Application.MainFormOnTaskbar := True;
+  Application.CreateForm(TFrmPrincipal, FrmPrincipal);
+  Application.CreateForm(TDataModule2, DataModule2);
+  Application.CreateForm(TfrmCliente, frmCliente);
+  Application.Run;
+end.
