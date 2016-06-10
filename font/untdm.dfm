@@ -182,4 +182,80 @@ object dm: Tdm
     Left = 104
     Top = 168
   end
+  object tbProduto: TIBDataSet
+    Database = banco
+    Transaction = IBTransaction
+    BufferChunks = 1000
+    CachedUpdates = False
+    DeleteSQL.Strings = (
+      'delete from PRODUTO'
+      'where'
+      '  ID_PRODUTO = :OLD_ID_PRODUTO')
+    InsertSQL.Strings = (
+      'insert into PRODUTO'
+      
+        '  (DESCRICAO_PRO, ID_PRODUTO, NOME_PRO, QT_ESTOQUE, VL_CUSTO, VL' +
+        '_VENDA)'
+      'values'
+      
+        '  (:DESCRICAO_PRO, :ID_PRODUTO, :NOME_PRO, :QT_ESTOQUE, :VL_CUST' +
+        'O, :VL_VENDA)')
+    RefreshSQL.Strings = (
+      'Select  *'
+      'from PRODUTO '
+      'where'
+      '  ID_PRODUTO = :ID_PRODUTO')
+    SelectSQL.Strings = (
+      'SELECT * FROM PRODUTO WHERE ID_PRODUTO = :ID_PRODUTO')
+    ModifySQL.Strings = (
+      'update PRODUTO'
+      'set'
+      '  DESCRICAO_PRO = :DESCRICAO_PRO,'
+      '  ID_PRODUTO = :ID_PRODUTO,'
+      '  NOME_PRO = :NOME_PRO,'
+      '  QT_ESTOQUE = :QT_ESTOQUE,'
+      '  VL_CUSTO = :VL_CUSTO,'
+      '  VL_VENDA = :VL_VENDA'
+      'where'
+      '  ID_PRODUTO = :OLD_ID_PRODUTO')
+    ParamCheck = True
+    UniDirectional = False
+    Left = 160
+    Top = 104
+    object tbProdutoID_PRODUTO: TIntegerField
+      FieldName = 'ID_PRODUTO'
+      Origin = '"PRODUTO"."ID_PRODUTO"'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object tbProdutoNOME_PRO: TIBStringField
+      FieldName = 'NOME_PRO'
+      Origin = '"PRODUTO"."NOME_PRO"'
+      Required = True
+      Size = 50
+    end
+    object tbProdutoDESCRICAO_PRO: TIBStringField
+      FieldName = 'DESCRICAO_PRO'
+      Origin = '"PRODUTO"."DESCRICAO_PRO"'
+      Size = 60
+    end
+    object tbProdutoQT_ESTOQUE: TIBBCDField
+      FieldName = 'QT_ESTOQUE'
+      Origin = '"PRODUTO"."QT_ESTOQUE"'
+      Precision = 18
+      Size = 2
+    end
+    object tbProdutoVL_CUSTO: TIBBCDField
+      FieldName = 'VL_CUSTO'
+      Origin = '"PRODUTO"."VL_CUSTO"'
+      Precision = 18
+      Size = 2
+    end
+    object tbProdutoVL_VENDA: TIBBCDField
+      FieldName = 'VL_VENDA'
+      Origin = '"PRODUTO"."VL_VENDA"'
+      Precision = 18
+      Size = 2
+    end
+  end
 end

@@ -25,6 +25,13 @@ type
     tbCidadeUF_CID: TIBStringField;
     tbClienteID_CIDADE: TIntegerField;
     qryExecutar: TIBQuery;
+    tbProduto: TIBDataSet;
+    tbProdutoID_PRODUTO: TIntegerField;
+    tbProdutoNOME_PRO: TIBStringField;
+    tbProdutoDESCRICAO_PRO: TIBStringField;
+    tbProdutoQT_ESTOQUE: TIBBCDField;
+    tbProdutoVL_CUSTO: TIBBCDField;
+    tbProdutoVL_VENDA: TIBBCDField;
     procedure tbClienteDATA_NASCSetText(Sender: TField; const Text: string);
     procedure tbClienteFONE_CLISetText(Sender: TField; const Text: string);
   private
@@ -57,7 +64,7 @@ begin
    end;
 
 
-   if ((frmCliente.erro = 1) and (Text <> '  /  /    ')) then
+   if ((frmCliente.erro = 1)) then
    begin
     frmCliente.dbDataNascimento.Color := $7280FA;
 

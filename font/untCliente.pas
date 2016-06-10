@@ -5,7 +5,7 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ToolWin, Vcl.ComCtrls,
-  Data.DB, Vcl.Mask, Vcl.DBCtrls, Vcl.ImgList;
+  Data.DB, Vcl.Mask, Vcl.DBCtrls, Vcl.ImgList, Vcl.ExtCtrls;
 
 type
   TfrmCliente = class(TForm)
@@ -32,6 +32,8 @@ type
     btnCancelar: TButton;
     ImageList: TImageList;
     edtCodigo: TEdit;
+    Panel1: TPanel;
+    StatusBar1: TStatusBar;
     procedure btnCadastrarClick(Sender: TObject);
     procedure btnCancelarClick(Sender: TObject);
     procedure btnExcluirClick(Sender: TObject);
@@ -239,13 +241,15 @@ end;
 procedure TfrmCliente.dbDataNascimentoExit(Sender: TObject);
 begin
     if dbDataNascimento.Text < '01/01/1916' then
-    begin
-       dbDataNascimento.Color := $7280FA;
-    end
-    else
-    begin
-       dbDataNascimento.Color := clGreen;
+     begin
+        if (dbDataNascimento.Text = '  /  /    ') then
+          begin
+            dbDataNascimento.Color := clWindow;
+            exit;
+          end;
+     dbDataNascimento.Color := $7280FA;
     end;
+
 end;
 
 procedure TfrmCliente.dbEnderecoKeyPress(Sender: TObject; var Key: Char);

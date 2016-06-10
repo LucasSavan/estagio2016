@@ -1,0 +1,115 @@
+unit untProduto;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Data.DB, Vcl.StdCtrls, Vcl.Mask,
+  Vcl.DBCtrls, Vcl.ImgList, Vcl.ToolWin, Vcl.ComCtrls, Vcl.ExtCtrls;
+
+type
+  TfrmProduto = class(TForm)
+    Label1: TLabel;
+    DBNOMEPRO: TDBEdit;
+    Label3: TLabel;
+    DBDESCPRO: TDBEdit;
+    Label4: TLabel;
+    DBQTEST: TDBEdit;
+    Label5: TLabel;
+    DBVLCUSTO: TDBEdit;
+    Label6: TLabel;
+    DBVLVENDA: TDBEdit;
+    ToolBar1: TToolBar;
+    edtCodPro: TEdit;
+    ImageList1: TImageList;
+    StatusBar1: TStatusBar;
+    Panel1: TPanel;
+    label7: TLabel;
+    btnCadastrar: TButton;
+    btnExcluir: TButton;
+    btnCancelar: TButton;
+    btnSalvar: TButton;
+    DataSource1: TDataSource;
+    procedure btnCadastrarClick(Sender: TObject);
+    procedure btnExcluirClick(Sender: TObject);
+    procedure btnSalvarClick(Sender: TObject);
+    procedure btnCancelarClick(Sender: TObject);
+    procedure FormShow(Sender: TObject);
+    procedure dsProdutoStateChange(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frmProduto: TfrmProduto;
+
+implementation
+
+{$R *.dfm}
+
+uses untdm;
+
+procedure TfrmProduto.btnCadastrarClick(Sender: TObject);
+begin
+  dm.tbProduto.Insert;
+  edtCodPro.Enabled := False;
+  DBNOMEPRO.SetFocus;
+end;
+
+procedure TfrmProduto.btnSalvarClick(Sender: TObject);
+begin
+  if (dsProduto.State = dsInsert) then
+   begin
+     dm.qryUltimo.Close;
+     dm.qryUltimo.SQL.Clear;
+     dm.qryUltimo.SQL.Add('SELECT MAX(ID_PRODUTO) AS ULTIMO FROM PRODUTO');
+     dm.qryUltimo.Open;
+
+     dm.tbProdutoID_PRODUTO.AsInteger := dm.qryUltimo.FieldByName('ULTIMO').AsInteger + 1;
+   end;
+
+  dm.tbProduto.Post;
+  dm.IBTransaction.CommitRetaining;
+
+  edtCodPro.Enabled := True;
+  edtCodPro.SetFocus;
+end;
+
+procedure TfrmProduto.dsProdutoStateChange(Sender: TObject);
+begin
+  if (dsProduto.State in [dsInsert, dsEdit]) then
+   begin
+      btnCadastrar.Visible  := False;
+      btnSalvar.Visible   := True;
+      btnExcluir.Visible  := False;
+      btnCancelar.Visible := True;
+   end
+  else
+   begin
+    btnCadastrar.Visible  := True;
+    btnSalvar.Visible   := False;
+    btnExcluir.Visible  := True;
+    btnCancelar.Visible := False;
+   end;
+end;
+
+procedure TfrmProduto.btnExcluirClick(Sender: TObject);
+begin
+  dm.tbProduto.Delete;
+end;
+
+procedure TfrmProduto.btnCancelarClick(Sender: TObject);
+begin
+  dm.tbProduto.Cancel;
+  edtCodPro.Enabled := True;
+  edtCodPro.SetFocus;
+end;
+
+procedure TfrmProduto.FormShow(Sender: TObject);
+begin
+  dm.tbProduto.Open;
+end;
+
+end.

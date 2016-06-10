@@ -12,8 +12,10 @@ type
     Cadastrar1: TMenuItem;
     Cliente1: TMenuItem;
     Cidade1: TMenuItem;
+    Produto1: TMenuItem;
     procedure Cliente1Click(Sender: TObject);
     procedure Cidade1Click(Sender: TObject);
+    procedure Produto1Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -27,7 +29,7 @@ implementation
 
 {$R *.dfm}
 
-uses untCliente, untCidade;
+uses untCliente, untCidade, untProduto;
 
 procedure TFrmPrincipal.Cidade1Click(Sender: TObject);
 begin
@@ -40,5 +42,10 @@ begin
 end;
 
 
+
+procedure TFrmPrincipal.Produto1Click(Sender: TObject);
+begin
+     frmProduto.ShowModal;
+end;
 
 end.

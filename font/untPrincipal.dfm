@@ -27,6 +27,10 @@ object FrmPrincipal: TFrmPrincipal
         Caption = 'Cidade'
         OnClick = Cidade1Click
       end
+      object Produto1: TMenuItem
+        Caption = 'Produto'
+        OnClick = Produto1Click
+      end
     end
   end
 end

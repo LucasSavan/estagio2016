@@ -2,9 +2,9 @@ object frmCliente: TfrmCliente
   Left = 0
   Top = 0
   Caption = 'frmCliente'
-  ClientHeight = 348
-  ClientWidth = 496
-  Color = clActiveBorder
+  ClientHeight = 336
+  ClientWidth = 494
+  Color = clSilver
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
   Font.Height = -11
@@ -14,153 +14,10 @@ object frmCliente: TfrmCliente
   OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
-  object Label1: TLabel
-    Left = 8
-    Top = 87
-    Width = 47
-    Height = 13
-    Caption = 'CODIGO*'
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clBlack
-    Font.Height = -11
-    Font.Name = 'Tahoma'
-    Font.Style = []
-    ParentFont = False
-  end
-  object Label2: TLabel
-    Left = 8
-    Top = 280
-    Width = 38
-    Height = 13
-    Caption = 'CIDADE'
-    FocusControl = dbCidade
-  end
-  object Label3: TLabel
-    Left = 8
-    Top = 125
-    Width = 35
-    Height = 13
-    Caption = 'NOME*'
-    FocusControl = dbNome
-  end
-  object Label4: TLabel
-    Left = 8
-    Top = 160
-    Width = 60
-    Height = 13
-    Caption = 'ENDERE'#199'O*'
-    FocusControl = dbEndereco
-  end
-  object Label5: TLabel
-    Left = 8
-    Top = 245
-    Width = 56
-    Height = 13
-    Caption = 'TELEFONE*'
-    FocusControl = dbTelefone
-  end
-  object Label6: TLabel
-    Left = 264
-    Top = 245
-    Width = 19
-    Height = 13
-    Caption = 'CPF'
-    FocusControl = dbCPF
-  end
-  object Label7: TLabel
-    Left = 187
-    Top = 280
-    Width = 96
-    Height = 13
-    Caption = 'DATA NASCIMENTO'
-    FocusControl = dbDataNascimento
-  end
-  object Label8: TLabel
-    Left = 8
-    Top = 201
-    Width = 39
-    Height = 13
-    Caption = 'BAIRRO'
-    FocusControl = dbBairro
-  end
-  object dbCidade: TDBEdit
-    Left = 75
-    Top = 277
-    Width = 46
-    Height = 21
-    DataField = 'ID_CIDADE'
-    DataSource = dsCliente
-    TabOrder = 6
-    OnKeyPress = dbCidadeKeyPress
-  end
-  object dbNome: TDBEdit
-    Left = 75
-    Top = 122
-    Width = 374
-    Height = 21
-    CharCase = ecUpperCase
-    DataField = 'NOME_CLI'
-    DataSource = dsCliente
-    TabOrder = 1
-    OnKeyPress = dbNomeKeyPress
-  end
-  object dbEndereco: TDBEdit
-    Left = 75
-    Top = 157
-    Width = 374
-    Height = 21
-    CharCase = ecUpperCase
-    DataField = 'ENDERE_O_CLI'
-    DataSource = dsCliente
-    TabOrder = 2
-    OnKeyPress = dbEnderecoKeyPress
-  end
-  object dbTelefone: TDBEdit
-    Left = 75
-    Top = 242
-    Width = 161
-    Height = 21
-    DataField = 'FONE_CLI'
-    DataSource = dsCliente
-    TabOrder = 4
-    OnKeyPress = dbTelefoneKeyPress
-  end
-  object dbCPF: TDBEdit
-    Left = 304
-    Top = 242
-    Width = 142
-    Height = 21
-    DataField = 'CPF_CLI'
-    DataSource = dsCliente
-    TabOrder = 5
-    OnExit = dbCPFExit
-    OnKeyPress = dbCPFKeyPress
-  end
-  object dbDataNascimento: TDBEdit
-    Left = 304
-    Top = 277
-    Width = 142
-    Height = 21
-    DataField = 'DATA_NASC'
-    DataSource = dsCliente
-    TabOrder = 7
-    OnExit = dbDataNascimentoExit
-  end
-  object dbBairro: TDBEdit
-    Left = 75
-    Top = 198
-    Width = 374
-    Height = 21
-    CharCase = ecUpperCase
-    DataField = 'DS_BAIRRO'
-    DataSource = dsCliente
-    TabOrder = 3
-    OnKeyPress = dbBairroKeyPress
-  end
   object ToolBar1: TToolBar
     Left = 0
     Top = 0
-    Width = 496
+    Width = 494
     Height = 70
     AutoSize = True
     ButtonHeight = 70
@@ -170,8 +27,9 @@ object frmCliente: TfrmCliente
     Images = ImageList
     ParentColor = False
     ShowCaptions = True
-    TabOrder = 8
+    TabOrder = 0
     Transparent = True
+    ExplicitWidth = 490
     object btnCadastrar: TButton
       Left = 0
       Top = 0
@@ -222,13 +80,177 @@ object frmCliente: TfrmCliente
       OnClick = btnSalvarClick
     end
   end
-  object edtCodigo: TEdit
-    Left = 75
-    Top = 87
-    Width = 46
-    Height = 21
-    TabOrder = 0
-    OnKeyPress = edtCodigoKeyPress
+  object Panel1: TPanel
+    Left = 0
+    Top = 70
+    Width = 494
+    Height = 266
+    Align = alClient
+    Color = clSilver
+    ParentBackground = False
+    TabOrder = 1
+    ExplicitTop = 76
+    ExplicitWidth = 496
+    ExplicitHeight = 269
+    object Label1: TLabel
+      Left = 12
+      Top = 15
+      Width = 47
+      Height = 13
+      Caption = 'CODIGO*'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clBlack
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+    end
+    object Label2: TLabel
+      Left = 12
+      Top = 208
+      Width = 38
+      Height = 13
+      Caption = 'CIDADE'
+      FocusControl = dbCidade
+    end
+    object Label4: TLabel
+      Left = 12
+      Top = 88
+      Width = 60
+      Height = 13
+      Caption = 'ENDERE'#199'O*'
+      FocusControl = dbEndereco
+    end
+    object Label6: TLabel
+      Left = 264
+      Top = 173
+      Width = 19
+      Height = 13
+      Caption = 'CPF'
+      FocusControl = dbCPF
+    end
+    object Label8: TLabel
+      Left = 12
+      Top = 127
+      Width = 39
+      Height = 13
+      Caption = 'BAIRRO'
+      FocusControl = dbBairro
+    end
+    object Label7: TLabel
+      Left = 187
+      Top = 208
+      Width = 96
+      Height = 13
+      Caption = 'DATA NASCIMENTO'
+      FocusControl = dbDataNascimento
+    end
+    object Label5: TLabel
+      Left = 12
+      Top = 173
+      Width = 56
+      Height = 13
+      Caption = 'TELEFONE*'
+      FocusControl = dbTelefone
+    end
+    object Label3: TLabel
+      Left = 12
+      Top = 51
+      Width = 35
+      Height = 13
+      Caption = 'NOME*'
+      FocusControl = dbNome
+    end
+    object edtCodigo: TEdit
+      Left = 74
+      Top = 12
+      Width = 46
+      Height = 21
+      TabOrder = 0
+      OnKeyPress = edtCodigoKeyPress
+    end
+    object dbTelefone: TDBEdit
+      Left = 74
+      Top = 170
+      Width = 161
+      Height = 21
+      DataField = 'FONE_CLI'
+      DataSource = dsCliente
+      TabOrder = 4
+      OnKeyPress = dbTelefoneKeyPress
+    end
+    object dbNome: TDBEdit
+      Left = 74
+      Top = 48
+      Width = 374
+      Height = 21
+      CharCase = ecUpperCase
+      DataField = 'NOME_CLI'
+      DataSource = dsCliente
+      TabOrder = 1
+      OnKeyPress = dbNomeKeyPress
+    end
+    object dbEndereco: TDBEdit
+      Left = 74
+      Top = 85
+      Width = 374
+      Height = 21
+      CharCase = ecUpperCase
+      DataField = 'ENDERE_O_CLI'
+      DataSource = dsCliente
+      TabOrder = 2
+      OnKeyPress = dbEnderecoKeyPress
+    end
+    object dbCPF: TDBEdit
+      Left = 298
+      Top = 170
+      Width = 142
+      Height = 21
+      DataField = 'CPF_CLI'
+      DataSource = dsCliente
+      TabOrder = 5
+      OnExit = dbCPFExit
+      OnKeyPress = dbCPFKeyPress
+    end
+    object dbDataNascimento: TDBEdit
+      Left = 298
+      Top = 207
+      Width = 142
+      Height = 21
+      DataField = 'DATA_NASC'
+      DataSource = dsCliente
+      TabOrder = 8
+      OnExit = dbDataNascimentoExit
+    end
+    object dbCidade: TDBEdit
+      Left = 74
+      Top = 207
+      Width = 46
+      Height = 21
+      DataField = 'ID_CIDADE'
+      DataSource = dsCliente
+      TabOrder = 6
+      OnKeyPress = dbCidadeKeyPress
+    end
+    object dbBairro: TDBEdit
+      Left = 74
+      Top = 124
+      Width = 374
+      Height = 21
+      CharCase = ecUpperCase
+      DataField = 'DS_BAIRRO'
+      DataSource = dsCliente
+      TabOrder = 3
+      OnKeyPress = dbBairroKeyPress
+    end
+    object StatusBar1: TStatusBar
+      Left = 1
+      Top = 248
+      Width = 494
+      Height = 20
+      Align = alCustom
+      Panels = <>
+    end
   end
   object dsCliente: TDataSource
     DataSet = dm.tbCliente
@@ -243,7 +265,7 @@ object frmCliente: TfrmCliente
     Left = 448
     Top = 8
     Bitmap = {
-      494C010104000800580032003200FFFFFFFF2110FFFFFFFFFFFFFFFF424D3600
+      494C010104000800600032003200FFFFFFFF2110FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000C80000006400000001002000000000008038
       0100000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
